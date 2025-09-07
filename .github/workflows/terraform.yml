@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      - develop
+      - cicd
   pull_request:
     branches:
       - main
-      - develop
+      - cicd
 
 env:
   TF_ROOT: environments/dev
@@ -72,4 +72,5 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
+
         run: terraform -chdir=$TF_ROOT apply -auto-approve tfplan.out
