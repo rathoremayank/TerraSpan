@@ -1,0 +1,136 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'website/**'
+      - '.github/workflows/deploy-pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate website files
+        run: |
+          echo "✓ Validating website structure..."
+          cd website/static
+          test -f index.html && echo "✓ index.html found"
+          test -f features.html && echo "✓ features.html found"
+          test -f docs.html && echo "✓ docs.html found"
+          test -f blog.html && echo "✓ blog.html found"
+          test -f contact.html && echo "✓ contact.html found"
+          test -f css/style.css && echo "✓ css/style.css found"
+          test -f js/main.js && echo "✓ js/main.js found"
+          echo "✓ All website files validated"
+
+      - name: List website contents
+        run: |
+          cd website/static
+          echo "Website structure:"
+          find . -type f | head -20
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: 'website/static'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: deploy
+    if: success()
+    
+    steps:
+      - name: Deployment Notification
+        run: |
+          echo "::notice title=Website Deployed::TerraSpan website deployed to GitHub Pages"
+
+  security-scan:
+    runs-on: ubuntu-latest
+    needs: build
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run security scan on website
+        run: |
+          echo "🔒 Running security checks..."
+          
+          # Check for common security issues in HTML files
+          if grep -r "onclick\|onerror\|onload" website/static/*.html; then
+            echo "::warning::Found inline event handlers - consider external handlers"
+          fi
+          
+          # Check for hardcoded credentials
+          if grep -r "password\|secret\|api_key" website/static/; then
+            echo "::error::Found potential credentials in website files"
+            exit 1
+          fi
+          
+          # Check for mixed content
+          if grep -r "http://" website/static/*.html | grep -v "https://"; then
+            echo "::warning::Found HTTP resources - ensure they redirect to HTTPS"
+          fi
+          
+          echo "✓ Security scan complete"
+
+      - name: Validate HTML files
+        run: |
+          echo "🔍 Validating HTML files..."
+          cd website/static
+          
+          # Check all HTML files exist
+          for file in *.html; do
+            if [ -f "$file" ]; then
+              echo "✓ Found $file"
+              # Basic HTML validation - check for closing tags
+              if ! grep -q "</html>" "$file"; then
+                echo "::error::$file is missing closing </html> tag"
+                exit 1
+              fi
+            fi
+          done
+          
+          # Verify CSS and JS are referenced
+          if ! grep -r "style.css" *.html; then
+            echo "::error::CSS file not referenced in HTML"
+            exit 1
+          fi
+          
+          if ! grep -r "main.js" *.html; then
+            echo "::error::JavaScript file not referenced in HTML"
+            exit 1
+          fi
+          
+          echo "✓ All HTML files validated successfully"

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - TerraSpan</title>
+    <meta name="description" content="Get in touch with the TerraSpan team">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><a href="/" style="text-decoration: none; color: inherit;">TerraSpan</a></div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/features.html">Features</a></li>
+                <li><a href="/docs.html">Documentation</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" style="padding: 60px 0; background: linear-gradient(135deg, #0066cc 0%, #00cc66 100%);">
+        <div class="container" style="color: white; text-align: center;">
+            <h1>Get in Touch</h1>
+            <p style="font-size: 1.1em; opacity: 0.9;">We'd love to hear from you. Have questions or feedback?</p>
+        </div>
+    </section>
+
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start;">
+                <!-- Contact Form -->
+                <div>
+                    <h2 style="margin-bottom: 30px;">Send us a Message</h2>
+                    <form id="contact-form" style="display: flex; flex-direction: column; gap: 20px;">
+                        <div>
+                            <label for="name" style="display: block; margin-bottom: 8px; font-weight: bold;">Name</label>
+                            <input type="text" id="name" name="name" required style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px; font-size: 1em;">
+                        </div>
+                        <div>
+                            <label for="email" style="display: block; margin-bottom: 8px; font-weight: bold;">Email</label>
+                            <input type="email" id="email" name="email" required style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px; font-size: 1em;">
+                        </div>
+                        <div>
+                            <label for="subject" style="display: block; margin-bottom: 8px; font-weight: bold;">Subject</label>
+                            <input type="text" id="subject" name="subject" required style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px; font-size: 1em;">
+                        </div>
+                        <div>
+                            <label for="message" style="display: block; margin-bottom: 8px; font-weight: bold;">Message</label>
+                            <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 12px; border: 1px solid var(--border); border-radius: 4px; font-size: 1em;"></textarea>
+                        </div>
+                        <button type="submit" style="padding: 12px 30px; background: var(--primary); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 1em;">Send Message</button>
+                        <div id="form-status" style="display: none; padding: 12px; border-radius: 4px; margin-top: 10px;"></div>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div>
+                    <h2 style="margin-bottom: 30px;">Contact Information</h2>
+                    
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="margin-bottom: 10px;">Community</h3>
+                        <p style="color: var(--text-light);">Join our growing community of infrastructure engineers</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 15px;">
+                            <li style="margin-bottom: 10px;">
+                                <a href="https://github.com/your-org/terraspan" style="color: var(--primary); text-decoration: none;">
+                                    🐙 GitHub
+                                </a>
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <a href="https://github.com/your-org/terraspan/discussions" style="color: var(--primary); text-decoration: none;">
+                                    💬 Discussions
+                                </a>
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <a href="https://github.com/your-org/terraspan/issues" style="color: var(--primary); text-decoration: none;">
+                                    🐛 Issue Tracker
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div style="margin-bottom: 30px;">
+                        <h3 style="margin-bottom: 10px;">Social Media</h3>
+                        <p style="color: var(--text-light);">Follow us for updates and announcements</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 15px;">
+                            <li style="margin-bottom: 10px;">
+                                <a href="https://twitter.com/terraspan" style="color: var(--primary); text-decoration: none;">
+                                    𝕏 Twitter
+                                </a>
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <a href="https://linkedin.com/company/terraspan" style="color: var(--primary); text-decoration: none;">
+                                    💼 LinkedIn
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 style="margin-bottom: 10px;">Resources</h3>
+                        <p style="color: var(--text-light);">Find answers and explore our documentation</p>
+                        <ul style="list-style: none; padding: 0; margin-top: 15px;">
+                            <li style="margin-bottom: 10px;">
+                                <a href="/docs.html" style="color: var(--primary); text-decoration: none;">
+                                    📚 Documentation
+                                </a>
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <a href="/blog.html" style="color: var(--primary); text-decoration: none;">
+                                    📝 Blog
+                                </a>
+                            </li>
+                            <li style="margin-bottom: 10px;">
+                                <a href="https://github.com/your-org/terraspan/wiki" style="color: var(--primary); text-decoration: none;">
+                                    📖 Wiki
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 60px 0; background: var(--light); border-top: 1px solid var(--border);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Frequently Asked Questions</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                
+                <div style="background: white; padding: 25px; border-radius: 8px; border: 1px solid var(--border);">
+                    <h3 style="margin-bottom: 15px;">What is TerraSpan?</h3>
+                    <p style="color: var(--text-light);">TerraSpan is a production-grade Terraform project for managing infrastructure across AWS, Azure, and Google Cloud Platform with a unified, modular architecture.</p>
+                </div>
+
+                <div style="background: white; padding: 25px; border-radius: 8px; border: 1px solid var(--border);">
+                    <h3 style="margin-bottom: 15px;">Is TerraSpan free to use?</h3>
+                    <p style="color: var(--text-light);">Yes! TerraSpan is open source and licensed under Apache 2.0. You only pay for the cloud resources you provision.</p>
+                </div>
+
+                <div style="background: white; padding: 25px; border-radius: 8px; border: 1px solid var(--border);">
+                    <h3 style="margin-bottom: 15px;">How do I get started?</h3>
+                    <p style="color: var(--text-light);">Check our <a href="/docs.html" style="color: var(--primary);">documentation</a> for a quick start guide. You'll need Terraform and cloud credentials to begin.</p>
+                </div>
+
+                <div style="background: white; padding: 25px; border-radius: 8px; border: 1px solid var(--border);">
+                    <h3 style="margin-bottom: 15px;">Can I use TerraSpan in production?</h3>
+                    <p style="color: var(--text-light);">Absolutely! TerraSpan is designed for production-grade infrastructure with built-in security, monitoring, and best practices.</p>
+                </div>
+
+                <div style="background: white; padding: 25px; border-radius: 8px; border: 1px solid var(--border);">
+                    <h3 style="margin-bottom: 15px;">How do I contribute?</h3>
+                    <p style="color: var(--text-light);">Check the CONTRIBUTING.md file in the repository for guidelines on submitting issues, feature requests, and pull requests.</p>
+                </div>
+
+                <div style="background: white; padding: 25px; border-radius: 8px; border: 1px solid var(--border);">
+                    <h3 style="margin-bottom: 15px;">What cloud providers are supported?</h3>
+                    <p style="color: var(--text-light);">TerraSpan supports AWS, Microsoft Azure, and Google Cloud Platform with first-class support for each.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #333; color: white; padding: 40px 0; text-align: center;">
+        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+            <div>
+                <h4>TerraSpan</h4>
+                <p>Production-grade multi-cloud infrastructure provisioning</p>
+            </div>
+            <div>
+                <h4>Resources</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="/docs.html" style="color: #ccc; text-decoration: none;">Documentation</a></li>
+                    <li><a href="/blog.html" style="color: #ccc; text-decoration: none;">Blog</a></li>
+                    <li><a href="https://github.com/your-org/terraspan" style="color: #ccc; text-decoration: none;">GitHub</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="https://github.com/your-org/terraspan" style="color: #ccc; text-decoration: none;">GitHub</a></li>
+                    <li><a href="https://linkedin.com/company/terraspan" style="color: #ccc; text-decoration: none;">LinkedIn</a></li>
+                    <li><a href="https://twitter.com/terraspan" style="color: #ccc; text-decoration: none;">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #555; padding-top: 20px;">
+            <p>&copy; 2026 TerraSpan. Licensed under Apache 2.0</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - TerraSpan</title>
+    <meta name="description" content="TerraSpan documentation and guides for multi-cloud infrastructure deployment">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><a href="/" style="text-decoration: none; color: inherit;">TerraSpan</a></div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/features.html">Features</a></li>
+                <li><a href="/docs.html">Documentation</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" style="padding: 60px 0; background: linear-gradient(135deg, #0066cc 0%, #00cc66 100%);">
+        <div class="container" style="color: white; text-align: center;">
+            <h1>Documentation</h1>
+            <p style="font-size: 1.1em; opacity: 0.9;">Complete guides and resources for deploying multi-cloud infrastructure</p>
+        </div>
+    </section>
+
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 250px 1fr; gap: 40px;">
+                <!-- Sidebar Navigation -->
+                <aside style="background: var(--light); padding: 20px; border-radius: 8px; height: fit-content;">
+                    <h3 style="margin-bottom: 20px;">Documentation</h3>
+                    <nav style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="#getting-started" style="padding: 10px; color: var(--primary); text-decoration: none; border-left: 3px solid transparent; padding-left: 15px; transition: all 0.3s;">Getting Started</a>
+                        <a href="#architecture" style="padding: 10px; color: var(--text-light); text-decoration: none; border-left: 3px solid transparent; padding-left: 15px; transition: all 0.3s;">Architecture</a>
+                        <a href="#installation" style="padding: 10px; color: var(--text-light); text-decoration: none; border-left: 3px solid transparent; padding-left: 15px; transition: all 0.3s;">Installation</a>
+                        <a href="#configuration" style="padding: 10px; color: var(--text-light); text-decoration: none; border-left: 3px solid transparent; padding-left: 15px; transition: all 0.3s;">Configuration</a>
+                        <a href="#deployment" style="padding: 10px; color: var(--text-light); text-decoration: none; border-left: 3px solid transparent; padding-left: 15px; transition: all 0.3s;">Deployment</a>
+                        <a href="#troubleshooting" style="padding: 10px; color: var(--text-light); text-decoration: none; border-left: 3px solid transparent; padding-left: 15px; transition: all 0.3s;">Troubleshooting</a>
+                    </nav>
+                </aside>
+
+                <!-- Main Content -->
+                <main>
+                    <section id="getting-started" style="margin-bottom: 50px; padding-bottom: 30px; border-bottom: 1px solid var(--border);">
+                        <h2>Getting Started</h2>
+                        <p style="margin-top: 15px;">Welcome to TerraSpan! This guide will help you get up and running with multi-cloud infrastructure provisioning in minutes.</p>
+                        <h3 style="margin-top: 25px; margin-bottom: 15px;">Prerequisites</h3>
+                        <ul style="margin-left: 20px; color: var(--text-light);">
+                            <li>Terraform >= 1.5.0</li>
+                            <li>AWS, Azure, or GCP account (or all three)</li>
+                            <li>Git for version control</li>
+                            <li>Command-line interface (bash, PowerShell, etc.)</li>
+                        </ul>
+                        <h3 style="margin-top: 25px; margin-bottom: 15px;">Quick Start</h3>
+                        <ol style="margin-left: 20px; color: var(--text-light);">
+                            <li>Clone the repository: <code style="background: #f0f0f0; padding: 2px 5px;">git clone https://github.com/your-org/terraspan.git</code></li>
+                            <li>Navigate to desired environment: <code style="background: #f0f0f0; padding: 2px 5px;">cd infrastructure/aws/environments/dev</code></li>
+                            <li>Initialize Terraform: <code style="background: #f0f0f0; padding: 2px 5px;">terraform init</code></li>
+                            <li>Plan deployment: <code style="background: #f0f0f0; padding: 2px 5px;">terraform plan</code></li>
+                            <li>Apply configuration: <code style="background: #f0f0f0; padding: 2px 5px;">terraform apply</code></li>
+                        </ol>
+                    </section>
+
+                    <section id="architecture" style="margin-bottom: 50px; padding-bottom: 30px; border-bottom: 1px solid var(--border);">
+                        <h2>Architecture</h2>
+                        <p style="margin-top: 15px;">TerraSpan follows a modular, multi-layered architecture designed for scalability and maintainability.</p>
+                        <h3 style="margin-top: 25px; margin-bottom: 15px;">Directory Structure</h3>
+                        <pre style="background: #f5f5f5; padding: 20px; border-radius: 4px; overflow-x: auto; color: var(--text);"><code>terraspan/
+├── infrastructure/
+│   ├── core/              # Shared configuration
+│   ├── aws/              # AWS provider
+│   │   ├── modules/      # Reusable AWS modules
+│   │   └── environments/ # dev, staging, prod
+│   ├── azure/            # Azure provider
+│   └── gcp/              # GCP provider
+├── website/              # Documentation website
+├── docs/                 # Full documentation
+└── .github/workflows/    # CI/CD pipelines</code></pre>
+                        <h3 style="margin-top: 25px; margin-bottom: 15px;">Core Modules</h3>
+                        <ul style="margin-left: 20px; color: var(--text-light);">
+                            <li><strong>Networking</strong>: VPC, subnets, security groups, load balancers</li>
+                            <li><strong>Compute</strong>: EC2/VMs, container orchestration, app services</li>
+                            <li><strong>Storage</strong>: Object storage, databases, caching layers</li>
+                            <li><strong>IAM</strong>: Roles, policies, service accounts, permissions</li>
+                            <li><strong>Monitoring</strong>: Logging, alerting, dashboards, metrics</li>
+                        </ul>
+                    </section>
+
+                    <section id="installation" style="margin-bottom: 50px; padding-bottom: 30px; border-bottom: 1px solid var(--border);">
+                        <h2>Installation</h2>
+                        <h3 style="margin-top: 25px; margin-bottom: 15px;">Step 1: Install Terraform</h3>
+                        <p>Download from <a href="https://www.terraform.io/downloads" style="color: var(--primary);">terraform.io/downloads</a> or use a package manager:</p>
+                        <pre style="background: #f5f5f5; padding: 20px; border-radius: 4px; margin-top: 10px;"><code># macOS
+brew install terraform
+
+# Windows
+choco install terraform
+
+# Linux
+sudo apt-get install terraform</code></pre>
+                        <h3 style="margin-top: 25px; margin-bottom: 15px;">Step 2: Configure Cloud Credentials</h3>
+                        <p style="margin-top: 15px;"><strong>AWS</strong>: Set environment variables or use AWS CLI</p>
+                        <pre style="background: #f5f5f5; padding: 20px; border-radius: 4px; margin-top: 10px;"><code>export AWS_ACCESS_KEY_ID=your_access_key
+export AWS_SECRET_ACCESS_KEY=your_secret_key</code></pre>
+                        <p style="margin-top: 20px;"><strong>Azure</strong>: Use Azure CLI</p>
+                        <pre style="background: #f5f5f5; padding: 20px; border-radius: 4px; margin-top: 10px;"><code>az login</code></pre>
+                        <p style="margin-top: 20px;"><strong>GCP</strong>: Use service account JSON</p>
+                        <pre style="background: #f5f5f5; padding: 20px; border-radius: 4px; margin-top: 10px;"><code>export GOOGLE_APPLICATION_CREDENTIALS=path/to/service-account.json</code></pre>
+                    </section>
+
+                    <section id="configuration" style="margin-bottom: 50px; padding-bottom: 30px; border-bottom: 1px solid var(--border);">
+                        <h2>Configuration</h2>
+                        <p style="margin-top: 15px;">Each environment uses a <code style="background: #f0f0f0; padding: 2px 5px;">terraform.tfvars</code> file for environment-specific values.</p>
+                        <pre style="background: #f5f5f5; padding: 20px; border-radius: 4px; margin-top: 10px;"><code>project_name = "terraspan"
+environment  = "dev"
+region       = "us-east-1"
+vpc_cidr     = "10.0.0.0/16"
+
+availability_zones = ["us-east-1a", "us-east-1b"]
+
+tags = {
+  Environment = "development"
+  ManagedBy   = "Terraform"
+  Project     = "TerraSpan"
+}</code></pre>
+                        <p style="margin-top: 20px;">Modify values for your deployment needs. Each environment (dev, staging, prod) has separate variable files.</p>
+                    </section>
+
+                    <section id="deployment" style="margin-bottom: 50px; padding-bottom: 30px; border-bottom: 1px solid var(--border);">
+                        <h2>Deployment</h2>
+                        <h3 style="margin-top: 25px; margin-bottom: 15px;">Manual Deployment</h3>
+                        <pre style="background: #f5f5f5; padding: 20px; border-radius: 4px; margin-top: 10px;"><code># Initialize Terraform working directory
+terraform init
+
+# Validate configuration
+terraform validate
+
+# Preview changes
+terraform plan -out=tfplan
+
+# Apply changes
+terraform apply tfplan</code></pre>
+                        <h3 style="margin-top: 25px; margin-bottom: 15px;">Automated Deployment (CI/CD)</h3>
+                        <p style="margin-top: 15px;">Push changes to the main branch. GitHub Actions will automatically:</p>
+                        <ol style="margin-left: 20px; color: var(--text-light); margin-top: 10px;">
+                            <li>Validate Terraform format and syntax</li>
+                            <li>Run security scanning (Checkov)</li>
+                            <li>Generate and post terraform plans</li>
+                            <li>Wait for manual approval</li>
+                            <li>Deploy approved changes</li>
+                        </ol>
+                    </section>
+
+                    <section id="troubleshooting">
+                        <h2>Troubleshooting</h2>
+                        <h3 style="margin-top: 25px; margin-bottom: 15px;">Common Issues</h3>
+                        <h4 style="margin-top: 20px;">Backend not initialized</h4>
+                        <p><strong>Error</strong>: "Error: Backend initialization required"</p>
+                        <p><strong>Solution</strong>: Run <code style="background: #f0f0f0; padding: 2px 5px;">terraform init</code> to initialize the backend</p>
+                        <h4 style="margin-top: 20px;">Resource already exists</h4>
+                        <p><strong>Error</strong>: "Error: resource already exists"</p>
+                        <p><strong>Solution</strong>: Import the resource using <code style="background: #f0f0f0; padding: 2px 5px;">terraform import</code> or clean up manually</p>
+                        <h4 style="margin-top: 20px;">Insufficient permissions</h4>
+                        <p><strong>Error</strong>: "AccessDenied" or "Forbidden"</p>
+                        <p><strong>Solution</strong>: Verify cloud credentials have required IAM permissions</p>
+                        <h3 style="margin-top: 25px; margin-bottom: 15px;">Getting Help</h3>
+                        <ul style="margin-left: 20px; color: var(--text-light); margin-top: 10px;">
+                            <li>Check full documentation in <code style="background: #f0f0f0; padding: 2px 5px;">docs/</code> directory</li>
+                            <li>Review Terraform logs: <code style="background: #f0f0f0; padding: 2px 5px;">TF_LOG=debug terraform plan</code></li>
+                            <li>Open an issue on <a href="https://github.com/your-org/terraspan/issues" style="color: var(--primary);">GitHub Issues</a></li>
+                        </ul>
+                    </section>
+                </main>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" style="padding: 60px 0; background: linear-gradient(135deg, #0066cc 0%, #00cc66 100%); color: white; text-align: center;">
+        <div class="container">
+            <h2>Need More Help?</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em;">Check our full documentation or reach out to the community</p>
+            <a href="https://github.com/your-org/terraspan" style="display: inline-block; padding: 12px 30px; background: white; color: #0066cc; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 10px;">View on GitHub</a>
+        </div>
+    </section>
+
+    <footer style="background: #333; color: white; padding: 40px 0; text-align: center;">
+        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+            <div>
+                <h4>TerraSpan</h4>
+                <p>Production-grade multi-cloud infrastructure provisioning</p>
+            </div>
+            <div>
+                <h4>Resources</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="/docs.html" style="color: #ccc; text-decoration: none;">Documentation</a></li>
+                    <li><a href="/blog.html" style="color: #ccc; text-decoration: none;">Blog</a></li>
+                    <li><a href="https://github.com/your-org/terraspan" style="color: #ccc; text-decoration: none;">GitHub</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="https://github.com/your-org/terraspan" style="color: #ccc; text-decoration: none;">GitHub</a></li>
+                    <li><a href="https://linkedin.com/company/terraspan" style="color: #ccc; text-decoration: none;">LinkedIn</a></li>
+                    <li><a href="https://twitter.com/terraspan" style="color: #ccc; text-decoration: none;">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #555; padding-top: 20px;">
+            <p>&copy; 2026 TerraSpan. Licensed under Apache 2.0</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

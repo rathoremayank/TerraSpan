@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - TerraSpan</title>
+    <meta name="description" content="TerraSpan features: multi-cloud support, modular architecture, CI/CD integration">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo"><a href="/" style="text-decoration: none; color: inherit;">TerraSpan</a></div>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/features.html">Features</a></li>
+                <li><a href="/docs.html">Documentation</a></li>
+                <li><a href="/blog.html">Blog</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero" style="padding: 60px 0; background: linear-gradient(135deg, #0066cc 0%, #00cc66 100%);">
+        <div class="container" style="color: white; text-align: center;">
+            <h1>Powerful Features for Multi-Cloud Infrastructure</h1>
+            <p style="font-size: 1.1em; opacity: 0.9;">Everything you need to manage infrastructure across AWS, Azure, and Google Cloud</p>
+        </div>
+    </section>
+
+    <section style="padding: 60px 0;">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Core Capabilities</h2>
+            <div class="feature-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 60px;">
+                
+                <div class="feature-card" style="padding: 30px; border: 1px solid var(--border); border-radius: 8px; background: var(--light);">
+                    <div style="font-size: 2.5em; margin-bottom: 15px;">🌐</div>
+                    <h3>Multi-Cloud Support</h3>
+                    <p>Unified management across AWS, Azure, and Google Cloud Platform with identical syntax and workflows.</p>
+                    <ul style="margin-top: 15px; margin-left: 20px; color: var(--text-light);">
+                        <li>AWS: EC2, ECS, EKS, RDS, S3</li>
+                        <li>Azure: VMs, AKS, App Service, CosmosDB</li>
+                        <li>GCP: Compute Engine, GKE, Cloud Storage</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" style="padding: 30px; border: 1px solid var(--border); border-radius: 8px; background: var(--light);">
+                    <div style="font-size: 2.5em; margin-bottom: 15px;">🏗️</div>
+                    <h3>Modular Architecture</h3>
+                    <p>Reusable, composable modules built on Terraform best practices for consistency and maintainability.</p>
+                    <ul style="margin-top: 15px; margin-left: 20px; color: var(--text-light);">
+                        <li>5 core modules per provider</li>
+                        <li>DRY principle throughout</li>
+                        <li>Shared core configuration layer</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" style="padding: 30px; border: 1px solid var(--border); border-radius: 8px; background: var(--light);">
+                    <div style="font-size: 2.5em; margin-bottom: 15px;">🔄</div>
+                    <h3>Environment Management</h3>
+                    <p>Built-in support for development, staging, and production environments with isolated state files.</p>
+                    <ul style="margin-top: 15px; margin-left: 20px; color: var(--text-light);">
+                        <li>Pre-configured dev/staging/prod</li>
+                        <li>Environment-specific variables</li>
+                        <li>Separate state backends per env</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" style="padding: 30px; border: 1px solid var(--border); border-radius: 8px; background: var(--light);">
+                    <div style="font-size: 2.5em; margin-bottom: 15px;">🔒</div>
+                    <h3>Production-Grade Security</h3>
+                    <p>Enterprise-ready security controls built into every layer of the infrastructure.</p>
+                    <ul style="margin-top: 15px; margin-left: 20px; color: var(--text-light);">
+                        <li>State file encryption</li>
+                        <li>RBAC and secrets management</li>
+                        <li>Network isolation & security groups</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" style="padding: 30px; border: 1px solid var(--border); border-radius: 8px; background: var(--light);">
+                    <div style="font-size: 2.5em; margin-bottom: 15px;">📊</div>
+                    <h3>Enterprise Monitoring</h3>
+                    <p>Unified logging, monitoring, and observability across all cloud providers and environments.</p>
+                    <ul style="margin-top: 15px; margin-left: 20px; color: var(--text-light);">
+                        <li>CloudWatch, Azure Monitor, GCP Logging</li>
+                        <li>Centralized alerting</li>
+                        <li>Performance dashboards</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" style="padding: 30px; border: 1px solid var(--border); border-radius: 8px; background: var(--light);">
+                    <div style="font-size: 2.5em; margin-bottom: 15px;">🚀</div>
+                    <h3>CI/CD Integration</h3>
+                    <p>GitHub Actions workflows for automated validation, planning, and deployment across all clouds.</p>
+                    <ul style="margin-top: 15px; margin-left: 20px; color: var(--text-light);">
+                        <li>Automated testing & linting</li>
+                        <li>Infrastructure as Code scanning</li>
+                        <li>One-click deployments</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" style="padding: 30px; border: 1px solid var(--border); border-radius: 8px; background: var(--light);">
+                    <div style="font-size: 2.5em; margin-bottom: 15px;">📚</div>
+                    <h3>Comprehensive Documentation</h3>
+                    <p>Extensive guides, examples, and best practices for every aspect of infrastructure deployment.</p>
+                    <ul style="margin-top: 15px; margin-left: 20px; color: var(--text-light);">
+                        <li>Getting started guide</li>
+                        <li>Architecture documentation</li>
+                        <li>Troubleshooting guides</li>
+                    </ul>
+                </div>
+
+                <div class="feature-card" style="padding: 30px; border: 1px solid var(--border); border-radius: 8px; background: var(--light);">
+                    <div style="font-size: 2.5em; margin-bottom: 15px;">🎯</div>
+                    <h3>Production Ready</h3>
+                    <p>Enterprise-tested patterns and configurations suitable for mission-critical workloads.</p>
+                    <ul style="margin-top: 15px; margin-left: 20px; color: var(--text-light);">
+                        <li>High availability setup</li>
+                        <li>Disaster recovery</li>
+                        <li>Cost optimization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 60px 0; background: var(--light); border-top: 1px solid var(--border);">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Module Matrix</h2>
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background: var(--primary); color: white;">
+                            <th style="padding: 12px; text-align: left;">Module</th>
+                            <th style="padding: 12px; text-align: center;">AWS</th>
+                            <th style="padding: 12px; text-align: center;">Azure</th>
+                            <th style="padding: 12px; text-align: center;">GCP</th>
+                            <th style="padding: 12px; text-align: left;">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px;"><strong>Networking</strong></td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px;">VPC, subnets, security groups, firewalls</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px;"><strong>Compute</strong></td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px;">EC2/VMs, container orchestration, app services</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px;"><strong>Storage</strong></td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px;">Object storage, databases, backups</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--border);">
+                            <td style="padding: 12px;"><strong>IAM</strong></td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px;">Identity, roles, permissions, service accounts</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 12px;"><strong>Monitoring</strong></td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px; text-align: center;">✅</td>
+                            <td style="padding: 12px;">Logging, alerting, dashboards, metrics</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" style="padding: 60px 0; background: linear-gradient(135deg, #0066cc 0%, #00cc66 100%); color: white; text-align: center;">
+        <div class="container">
+            <h2>Ready to Deploy Multi-Cloud Infrastructure?</h2>
+            <p style="margin-bottom: 30px; font-size: 1.1em;">Get started with TerraSpan in just a few minutes</p>
+            <a href="/docs.html" style="display: inline-block; padding: 12px 30px; background: white; color: #0066cc; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 10px;">View Documentation</a>
+        </div>
+    </section>
+
+    <footer style="background: #333; color: white; padding: 40px 0; text-align: center;">
+        <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+            <div>
+                <h4>TerraSpan</h4>
+                <p>Production-grade multi-cloud infrastructure provisioning</p>
+            </div>
+            <div>
+                <h4>Resources</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="/docs.html" style="color: #ccc; text-decoration: none;">Documentation</a></li>
+                    <li><a href="/blog.html" style="color: #ccc; text-decoration: none;">Blog</a></li>
+                    <li><a href="https://github.com/your-org/terraspan" style="color: #ccc; text-decoration: none;">GitHub</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Connect</h4>
+                <ul style="list-style: none; padding: 0;">
+                    <li><a href="https://github.com/your-org/terraspan" style="color: #ccc; text-decoration: none;">GitHub</a></li>
+                    <li><a href="https://linkedin.com/company/terraspan" style="color: #ccc; text-decoration: none;">LinkedIn</a></li>
+                    <li><a href="https://twitter.com/terraspan" style="color: #ccc; text-decoration: none;">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #555; padding-top: 20px;">
+            <p>&copy; 2026 TerraSpan. Licensed under Apache 2.0</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

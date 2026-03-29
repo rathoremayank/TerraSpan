@@ -1,191 +1,193 @@
 # TerraSpan Website
 
-A high-performance, responsive static website showcasing the TerraSpan multi-cloud infrastructure project. Built with Hugo for simplicity and speed.
+A high-performance, responsive static website showcasing the TerraSpan multi-cloud infrastructure project. Built with pure HTML, CSS, and JavaScript—**no dependencies required**.
 
 ## Overview
 
-The TerraSpan website is built with **Hugo**, a modern static site generator that provides:
+The TerraSpan website is built with vanilla **HTML, CSS, and JavaScript**, providing:
 
-- ⚡ **Blazing Fast**: Generates sites in milliseconds
-- 📱 **Responsive Design**: Mobile-first, works on all devices
-- 🎨 **Easy Customization**: Simple template structure
-- 🔍 **SEO Friendly**: Built-in sitemap and structured data
-- 🚀 **CDN Ready**: Optimized static assets
+- ⚡ **Zero Dependencies**: Pure HTML/CSS/JS—no build tools required
+- 🚀 **Blazing Fast**: Minimal JavaScript, pure static delivery
+- 📱 **Responsive Design**: Mobile-first, adaptive CSS with dark mode support
+- 🎨 **Easy Customization**: Simple, readable HTML structure with inline styles
+- 🔍 **SEO Friendly**: Semantic HTML, proper meta tags, and structured data
+- 🌍 **Universal Compatibility**: Works everywhere—browsers, servers, CDNs
 
 ## Directory Structure
 
 ```
 website/
-├── archetypes/              # Content templates
-├── config.toml              # Hugo configuration
-├── content/                 # Page content (markdown)
-│   ├── _index.md           # Home page
-│   ├── features.md         # Features page
-│   ├── docs/               # Documentation
-│   ├── blog/               # Blog posts
-│   └── contact.md          # Contact page
-├── data/                   # Data files (YAML, TOML, JSON)
-├── layouts/                # HTML templates
-│   ├── _default/          # Default layouts
-│   ├── partials/          # Reusable components
-│   └── shortcodes/        # Custom shortcodes
-├── public/                # Generated output (don't commit)
-├── static/                # Static files
-│   ├── css/              # Stylesheets
-│   ├── js/               # JavaScript
-│   └── img/              # Images
-├── themes/                # Hugo themes
-└── README.md              # This file
+├── static/
+│   ├── index.html           # Home page
+│   ├── features.html        # Features page
+│   ├── docs.html            # Documentation page
+│   ├── blog.html            # Blog page
+│   ├── contact.html         # Contact page
+│   ├── css/
+│   │   └── style.css        # Main stylesheet (responsive, dark mode)
+│   ├── js/
+│   │   └── main.js          # Interactive features (form handling, navigation)
+│   └── img/                 # Images directory (for future assets)
+├── config.toml              # (Deprecated - kept for reference only)
+├── content/                 # (Deprecated - markdown files no longer needed)
+├── themes/                  # (Deprecated - Hugo themes no longer used)
+└── README.md                # This file
 ```
+
+**Note**: The `config.toml`, `content/`, and `themes/` directories are retained for reference but are no longer used in the pure HTML/CSS/JS architecture.
 
 ## Installation
 
 ### Prerequisites
+Quick Start
 
-- Hugo >= 0.120.0
-- Git
-- (Optional) Node.js for asset building
+### Prerequisites
 
-### Setup
+- Any modern web browser
+- A simple HTTP server (for local development)
+- Git (optional, for version control)
 
-1. **Install Hugo**
-   ```bash
-   # macOS
-   brew install hugo
-   
-   # Windows
-   choco install hugo-extended
-   
-   # Linux
-   sudo apt-get install hugo
-   ```
+### Local Development
 
-2. **Navigate to website directory**
-   ```bash
-   cd website
-   ```
+Choose any of these options to serve the website locally:
 
-3. **Run local development server**
-   ```bash
-   hugo server -D
-   ```
-
-   Visit http://localhost:1313 to see the site
-
-## Content Management
-
-### Creating Pages
-
-1. **Create new page**
-   ```bash
-   hugo new posts/my-new-post.md
-   ```
-
-2. **Edit page in markdown**
-   ```markdown
-   ---
-   title: "Post Title"
-   date: 2026-03-29
-   draft: false
-   categories: ["feature"]
-   tags: ["terraform", "cloud"]
-   ---
-   
-   Post content here...
-   ```
-
-3. **View in browser**
-   Server auto-reloads on file changes
-
-### Front Matter
-
-Each page has front matter (YAML between `---` markers):
-
-```yaml
-title: "Page Title"
-description: "Short description for SEO"
-date: 2026-03-29T10:00:00Z
-draft: false                    # Set to false to publish
-categories: ["category"]
-tags: ["tag1", "tag2"]
-author: "Author Name"
-featured: false                 # Show on home page
-image: "/img/cover.jpg"        # Featured image
----
+**Option 1: Python (Built-in)**
+```bash
+cd website/static
+python -m http.server 8000
 ```
+Visit http://localhost:8000
 
-### Content Organization
-
+**Option 2: Node.js (npx)**
+```bash
+cd website/static
+npx http-server
 ```
-content/
-├── _index.md              # Home page (/)
-├── about.md               # About page
-├── features.md            # Features page
-├── blog/
-│   ├── _index.md         # Blog main page
-│   ├── first-post.md
-│   └── second-post.md
-├── docs/
+Visit http://localhost:8080
+
+**Option 3: PHP (Built-in)**
+```bash
+cd website/static
+php -S localhost:8000
+```
+Visit http://localhost:8000
+
+**Option 4: LNew Pages
+
+1. **Create a new HTML file** in `website/static/`:
+   ```bash
+   # Example: creating a new page called "about.html"
+   touch website/static/about.html
+   ```
+
+2. **Copy the structure from an existing page**:
+   ```html
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Page Title - TerraSpan</title>
+       <meta name="description" content="Page description for SEO">
+       <link rel="stylesheet" href="/css/style.css">
+   </head>
+   <body>
+       <!-- Navigation (copy from index.html) -->
+       <nav class="navbar">
+           <!-- ... -->
+       </nav>
+
+       <!-- Your content -->
+       <section style="padding: 60px 0;">
+           <div class="container">
+               <h1>Page Title</h1>
+               <p>Your content here...</p>
+           </div>
+       </section>
+
+       <!-- Footer (copy from index.html) -->
+       <footer>
+           <!-- ... -->
+       </footer>
+
+       <script src="/js/main.js"></script>
+   </body>
+   </html>
+   ```
+
+3. **Update navigation links** in all HTML files to reference the new page:
+   ```html
+   <li><a href="/about.html">About</a></li>
+   ```
+
+### Page Template Best Practices
+
+- Use semantic HTML (`<header>`, `<main>`, `<section>`, `<footer>`)
+- Include proper meta tags for SEO in `<head>`
+- Use CSS variables for consistent styling
+- Keep structure consistent across all pages
+- Always include the navigation bar and footer
+- Load `main.js` at the end of `<body>─ docs/
 │   ├── _index.md         # Docs home
 │   ├── getting-started/
 │   │   └── index.md
 │   └── guide/
 └── contact.md             # Contact page
-```
+```Styling
 
-## Customization
+All styling is in `static/css/style.css`. Key customization points:
 
-### Configuration
-
-Edit `config.toml` for site-wide settings:
-
-```toml
-baseURL = "https://terraspan.dev/"
-title = "TerraSpan"
-languageCode = "en-us"
-
-[outputs]
-  home = ["HTML", "JSON"]
-
-[params]
-  description = "Multi-cloud infrastructure with Terraform"
-  author = "TerraSpan Team"
-  
-  [params.social]
-    github = "https://github.com/terraspan"
-    linkedin = "https://linkedin.com/company/terraspan"
-```
-
-### Styling
-
-Modify CSS in `static/css/`:
-
+**Change Color Scheme (CSS Variables)**:
 ```css
-/* static/css/style.css */
 :root {
-  --primary: #0066cc;
-  --secondary: #00cc66;
-  --font-size: 16px;
+    --primary: #0066cc;        /* Main brand color */
+    --secondary: #00cc66;      /* Accent color */
+    --accent: #ff6600;         /* Highlight color */
+    --dark: #1a1a1a;           /* Dark background */
+    --light: #f5f5f5;          /* Light background */
+    --text: #333;              /* Text color */
+    --text-light: #666;        /* Light text */
+    --border: #ddd;            /* Border color */
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Dark mode colors (auto-applies when system prefers dark mode) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dark: #ffffff;
+        --light: #1a1a1a;
+        --text: #f5f5f5;
+        --text-light: #ccc;
+        --border: #444;
+    }
+}
+```
+
+**Customize Typography**:
+```css
 body {
-  font-family: 'Segoe UI', sans-serif;
-  color: var(--text-color);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
 }
+
+h1, h2, h3 { font-weight: 700; }
 ```
 
-### Themes
+### JavaScript Enhancements
 
-Install and customize Hugo themes:
+Main interactivity is in `static/js/main.js`:
 
-```bash
-# Add theme as git submodule
-git submodule add https://github.com/theme/name.git themes/name
+- **Form Validation**: Contact form validation and submission
+- **Navigation**: Active link highlighting
+- **Smooth Scrolling**: Anchor link animation
+- **Dark Mode Detection**: Automatic color scheme detection
+- **Error Handling**: Console error logging
 
-# Update config.toml
-echo 'theme = "name"' >> config.toml
-```
-
+To add more interactivity:
+1. Create a new function in `main.js`
+2. Call it from the `DOMContentLoaded` event
+3. Test thoroughly in all browsers
 Popular themes:
 - [Hugo Ananke](https://themes.gohugo.io/themes/gohugoioTheme/)
 - [Hugo Paper](https://themes.gohugo.io/themes/hugo-paper/)
@@ -193,66 +195,63 @@ Popular themes:
 
 ## Building
 
-### Development Build
+###File Optimization
 
+### Minification (Optional)
+
+For production, optimize file sizes:
+
+**CSS Minification**:
 ```bash
-hugo server -D
-# Includes draft content
-# Auto-reload on changes
-# Runs on http://localhost:1313
+# Using csso-cli
+npm install -g csso-cli
+csso static/css/style.css -o static/css/style.min.css
 ```
 
-### Production Build
-
+**JavaScript Minification**:
 ```bash
-hugo
-# Generates optimized output to public/
-# Includes only published content
+# Using terser
+npm install -g terser
+terser static/js/main.js -o static/js/main.min.js
 ```
 
-### Build with Environment Variables
+Then update HTML files to reference `.min.css` and `.min.js` files.
+
+### Image Optimization
 
 ```bash
-HUGO_ENV=production hugo
+# Using ImageMagick
+mogrify -quality 85 static/img/*.jpg
+The GitHub Actions workflow (`.github/workflows/deploy-pages.yml`) automatically deploys the website:
+
+1. **Enable GitHub Pages** in repository settings:
+   - Settings → Pages → Source: GitHub Actions
+
+2. **Website is deployed** automatically on push to `main` with changes inside `website/static/`
+
+3. **Access** your site at `https://your-username.github.io`
+
+For custom domain:
+```bash
+# Add CNAME file in website/static/
+echo "yourdomain.com" > website/static/CNAME
 ```
-
-## Deployment
-
-### GitHub Pages
-
-1. **Configure in config.toml**
-   ```toml
-   baseURL = "https://your-username.github.io/terraspan/"
-   ```
-
-2. **Deploy GitHub Actions**
-   Create `.github/workflows/hugo.yml`
-
-3. **Push to repository**
-   ```bash
-   git add .
-   git commit -m "Update website"
-   git push origin main
-   ```
 
 ### Netlify
 
-1. **Create Netlify account**
-2. **Connect GitHub repository**
-3. **Set build command**: `hugo`
-4. **Set publish directory**: `public`
-5. **Deploy** on every push to main
+1. Create Netlify account and connect GitHub repo
+2. Configure build settings:
+   - Build command: (leave empty)
+   - Publish directory: `website/static`
+3. Deploy on every push
 
 ### AWS S3 + CloudFront
 
 ```bash
-# Build site
-hugo
-
 # Sync to S3
-aws s3 sync public/ s3://terraspan-website/ --delete
+aws s3 sync website/static/ s3://terraspan-website/ --delete
 
-# Invalidate CloudFront
+# Invalidate CloudFront cache
 aws cloudfront create-invalidation --distribution-id <ID> --paths "/*"
 ```
 
@@ -263,69 +262,162 @@ aws cloudfront create-invalidation --distribution-id <ID> --paths "/*"
 az staticwebapp create \
   --name terraspan-website \
   --resource-group terraspan-rg \
-  --source https://github.com/your-org/terraspan
-
-# Deploy
-az staticwebapp deploy --name terraspan-website
+  --source https://github.com/your-org/terraspan \
+  --output-location "website/static"
 ```
 
-## Performance Optimization
+### Simple HTTP Server
 
-### Image Optimization
+For testing or small deployments:
+```bash
+# Quick deployment to any server with HTTP
+scp -r website/static/* user@server:/var/www/html/
+# Create static web app
+az sCaching Headers
 
-Use Hugo's image processing:
+Configure your server to set cache headers:
 
-```markdown
-{{< img src="image.jpg" alt="Description" width="600" height="400" >}}
+**Nginx**:
+```nginx
+location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2)$ {
+    expires 365d;
+    add_header Cache-Control "public, immutable";
+}
+
+location ~* \.html$ {
+    expires 1h;
+    add_header Cache-Control "public, must-revalidate";
+}
 ```
 
-### Minification
+**Apache**:
+```apache
+<FilesMatch "\.js$|\.css$|\.jpg$|\.png$|\.gif$">
+    Header set Cache-Control "max-age=31536000, public, immutable"
+</FilesMatch>
 
-Enable in config.toml:
-
-```toml
-[minify]
-  minifyJSON = true
-  minifyCSS = true
-  minifyJS = true
-  minifyHTML = true
+<FilesMatch "\.html$">
+    Header set Cache-Control "max-age=3600, public, must-revalidate"
+</FilesMatch>
 ```
 
-### Caching
+### Performance Tips
 
-Add cache control headers:
+- ✅ All CSS is in a single file (no multiple requests)
+- ✅ Minimal JavaScript (only ~300 lines)
+- ✅ No external dependencies or CDN calls
+- ✅ Re Best Practices
 
-```toml
-[[outputs.html]]
-  path = "index.html"
-  
-[caching]
-  [caching.images]
-    max_age = 31536000  # 1 year
-```
+### Meta Tags
 
-## SEO
-
-### Search Engine Optimization
-
-Add to config.toml:
-
-```toml
-[outputs]
-  home = ["HTML", "JSON", "RSS"]
-  
-[sitemap]
-  changefreq = "weekly"
-  priority = 0.5
+Every page should include:
+```html
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Title - TerraSpan</title>
+    <meta name="description" content="Brief description under 160 characters">
+    <meta name="keywords" content="terraform, cloud, infrastructure">
+    <meta name="author" content="TerraSpan Team">
+    <meta property="og:title" content="Page Title">
+    <meta property="og:description" content="Description for social sharing">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://terraspan.dev/page">
+</head>
 ```
 
 ### Structured Data
 
-Add JSON-LD:
-
+Add JSON-LD to `<head>`:
 ```html
 <script type="application/ld+json">
 {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "TerraSpan",
+  "url": "https://terraspan.dev",
+  "logo": "https://terraspan.dev/logo.png",
+  "description": "Production-grade multi-cloud infrastructure provisioning with Terraform",
+  "sameAs": [
+    "https://github.com/your-org/terraspan",
+    "https://twitter.com/terraspan"
+  ]
+}
+</script>
+```
+Analytics & Monitoring
+
+### Google Analytics
+
+Add to every HTML page before closing `</body>`:
+```html
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
+```
+
+### Uptime Monitoring
+
+Service options:
+- [Pingdom](https://www.pingdom.com/)
+- [UptimeRobot](https://uptimerobot.com/)
+- [Google Cloud Monitoring](https://cloud.google.com/stackdriver)
+- [Azure Monitor](https://azure.microsoft.com/en-us/services/monitor/)
+- [Datadog](https://www.datadoghq.com/)
+
+### Real User Monitoring
+
+Add simple RUM tracking:
+```jPages Not Loading
+
+1. **Check file paths**: Ensure HTML files are in `website/static/`
+2. **Verify links**: Navigation links should use `.html` extension
+3. **Check CSS paths**: Should be `/css/style.css` (absolute path)
+4. **Clear browser cache**: Hard refresh with Ctrl+Shift+R (Windows) or Cmd+Shift+R (Mac)
+
+### Form Not Working
+
+1. Check browser console for JavaScript errors
+2. Verify form names match in `contact.html` and `main.js`
+3. Contact form currently shows success message (client-side)
+4. For email submission, integrate backend service:
+   - [Formspree](https://formspree.io/)
+   - [getform.io](https://getform.io/)
+   - [Basin](https://usebasin.com/)
+
+### Styling Issues
+
+1. Check CSS paths in HTML `<head>`
+2. Verify CSS variables are defined in `:root`
+3. Clear browser cache
+4. Check browser DevTools for CSS conflicts
+5. Test in incognito mode
+
+### Dark Mode Not Working
+
+1. Check `@media (prefers-color-scheme: dark)` in CSS
+2. Test in browser's dark mode (DevTools → Rendering → Emulate CSS Media Feature)
+3. TerraSpan Main README](../../README.md)
+- [Deployment Guide](../../docs/deployment.md)
+- [Contributing Guidelines](../../CONTRIBUTING.md)
+- [Architecture Guide](../../docs/architecture.md)
+- [CI/CD Workflows](../../.github/workflows/README.md)
+
+## Resources
+
+- [MDN Web Docs](https://developer.mozilla.org/)
+- [CSS Tricks](https://css-tricks.com/)
+- [JavaScript Info](https://javascript.info/)
+- [Web Performance Guide](https://web.dev/performance/)
+- [SEO Starter Guide](https://developers.google.com/search/docs
+1. **GitHub Pages not showing changes**: Clear gh-pages branch cache
+2. **Custom domain not working**: Verify CNAME file in `website/static/`
+3. **Mixed content error (HTTP/HTTPS)**: Ensure all resource URLs use HTTPS
+4. **404 errors**: Check file extensions (must use `.html` or configure server redirects)
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "TerraSpan",
