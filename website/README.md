@@ -1,6 +1,6 @@
 # TerraSpan Website
 
-A high-performance, responsive static website showcasing the TerraSpan multi-cloud infrastructure project. Built with pure HTML, CSS, and JavaScript—**no dependencies required**.
+A modern, static website built with pure HTML, CSS, and JavaScript - no frameworks, no build tools, just clean, fast web standards.
 
 ## Overview
 
