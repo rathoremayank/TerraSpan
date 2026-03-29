@@ -1,0 +1,72 @@
+name: Terraform Apply
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'infrastructure/**'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+      cloud_provider:
+        description: 'Cloud provider'
+        required: true
+        default: 'aws'
+        type: choice
+        options:
+          - aws
+          - azure
+          - gcp
+
+env:
+  TF_VERSION: '1.6.0'
+
+jobs:
+  apply-aws:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::ACCOUNT_ID:role/GitHubActionsRole
+          aws-region: us-east-1
+
+      - name: Terraform Init - AWS
+        run: |
+          cd infrastructure/aws/environments/dev
+          terraform init
+
+      - name: Terraform Plan - AWS
+        run: |
+          cd infrastructure/aws/environments/dev
+          terraform plan -out=tfplan
+
+      - name: Manual Review Required
+        run: echo "Manual approval required for production deployments"
+
+      - name: Terraform Apply - AWS
+        if: github.ref == 'refs/heads/main'
+        run: |
+          cd infrastructure/aws/environments/dev
+          terraform apply tfplan
+
+  # Add similar jobs for azure and gcp...

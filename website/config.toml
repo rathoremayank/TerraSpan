@@ -1,0 +1,72 @@
+baseURL = "https://terraspan.dev/"
+languageCode = "en-us"
+title = "TerraSpan - Multi-Cloud Infrastructure as Code"
+description = "Production-grade Terraform project for seamless infrastructure provisioning across AWS, Azure, and GCP"
+
+# Output formats
+[outputs]
+  home = ["HTML", "JSON", "RSS"]
+  section = ["HTML", "JSON"]
+  page = ["HTML"]
+
+# Minification settings
+[minify]
+  minifyJSON = true
+  minifyCSS = true
+  minifyJS = true
+  minifyHTML = true
+
+# Sitemap
+[[outputs.rss]]
+  mediaTypes = ["application/rss"]
+  baseName = "feed"
+
+# Site parameters
+[params]
+  author = "TerraSpan Team"
+  description = "Multi-cloud infrastructure management with Terraform"
+  
+  [params.social]
+    github = "https://github.com/your-org/terraspan"
+    linkedin = "https://www.linkedin.com/company/terraspan"
+    twitter = "https://twitter.com/terraspan"
+    
+  [params.theme]
+    primaryColor = "#0066cc"
+    secondaryColor = "#00cc66"
+    accentColor = "#ff6600"
+    darkMode = true
+
+# Content settings
+[content]
+  [content.en]
+    languageName = "English"
+    languageCode = "en"
+    contentDir = "content"
+
+# Navigation menu
+[[menu.main]]
+  name = "Features"
+  url = "/features"
+  weight = 10
+
+[[menu.main]]
+  name = "Documentation"
+  url = "/docs"
+  weight = 20
+
+[[menu.main]]
+  name = "Blog"
+  url = "/blog"
+  weight = 30
+
+[[menu.main]]
+  name = "Contact"
+  url = "/contact"
+  weight = 40
+
+# Build settings
+[build]
+  [build.cachebusters]
+    [[build.cachebusters.source]]
+      source = "assets/.*"

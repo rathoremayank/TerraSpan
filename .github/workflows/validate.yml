@@ -1,0 +1,84 @@
+name: Terraform Validate
+
+on:
+  pull_request:
+    paths:
+      - 'infrastructure/**'
+      - '.github/workflows/validate.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'infrastructure/**'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        terraform-version: ['1.6.0', '1.7.0']
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: ${{ matrix.terraform-version }}
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive infrastructure/
+
+      - name: Terraform Validate AWS
+        run: |
+          cd infrastructure/aws/environments/dev
+          terraform init -backend=false
+          terraform validate
+
+      - name: Terraform Validate Azure
+        run: |
+          cd infrastructure/azure/environments/dev
+          terraform init -backend=false
+          terraform validate
+
+      - name: Terraform Validate GCP
+        run: |
+          cd infrastructure/gcp/environments/dev
+          terraform init -backend=false
+          terraform validate
+
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Install TFLint
+        run: |
+          wget https://github.com/terraform-linters/tflint/releases/download/v0.48.0/tflint_linux_amd64.zip
+          unzip tflint_linux_amd64.zip
+          sudo mv tflint /usr/local/bin
+          tflint --version
+
+      - name: Run TFLint
+        run: tflint --recursive infrastructure/
+
+  security:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: infrastructure/
+          framework: terraform
+          quiet: false
+          soft_fail: true

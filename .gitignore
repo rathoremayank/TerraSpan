@@ -1,0 +1,88 @@
+**/terraform/.terraform
+**/.terraform.lock.hcl
+**/terraform.tfstate
+**/terraform.tfstate.*
+**/crash.log
+**/crash.*.log
+**/.terraform.tfvars
+**/terraform.tfvars
+**/.env
+**/.env.local
+
+# IDE and Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.vim/
+
+# OS
+Thumbs.db
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Build artifacts
+/public/
+/dist/
+/build/
+*.o
+*.a
+*.so
+*.pyc
+
+# Dependencies
+node_modules/
+vendor/
+.bundle/
+
+# Logs
+*.log
+logs/
+
+# Secrets (be careful!)
+*.key
+*.pem
+secrets/
+.secrets/
+
+# State backups
+*.tfstate.backup
+backup-*.tfstate
+state-backup/
+
+# Planning output
+tfplan
+*.tfplan
+plan.txt
+
+# Local development
+.local/
+tmp/
+temp/
+
+# CI/CD
+.github/cache/
+.gitlab-ci/cache/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+venv/
+env/
+ENV/
+
+# Go
+go.sum
+go.sum.lock
+*.exe
+*.dll
+
+# Generated files
+*.generated.tf
