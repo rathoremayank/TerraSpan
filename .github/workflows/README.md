@@ -210,7 +210,7 @@ Workflow Customization
 **Workflow configuration** (in `deploy-pages.yml`):
 ```yaml
 - name: Upload artifact
-  uses: actions/upload-pages-artifact@v2
+  uses: actions/upload-pages-artifact@v3
   with:
     path: 'website/static'  # Points to static website
 ```
