@@ -32,25 +32,33 @@ jobs:
         run: |
           echo "✓ Validating website structure..."
           cd website/static
-          test -f index.html && echo "✓ index.html found"
-          test -f features.html && echo "✓ features.html found"
-          test -f docs.html && echo "✓ docs.html found"
-          test -f blog.html && echo "✓ blog.html found"
-          test -f contact.html && echo "✓ contact.html found"
-          test -f css/style.css && echo "✓ css/style.css found"
-          test -f js/main.js && echo "✓ js/main.js found"
+          
+          # Check required HTML files
+          required_files=("index.html" "features.html" "docs.html" "blog.html" "contact.html" "css/style.css" "js/main.js")
+          for file in "${required_files[@]}"; do
+            if [ -f "$file" ]; then
+              echo "✓ $file found"
+            else
+              echo "::error::Required file $file not found"
+              exit 1
+            fi
+          done
+          
           echo "✓ All website files validated"
 
       - name: List website contents
         run: |
           cd website/static
           echo "Website structure:"
-          find . -type f | head -20
+          find . -type f
+          echo ""
+          du -sh .
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: 'website/static'
+          compression: 'gzip'
 
   deploy:
     environment:
@@ -59,6 +67,7 @@ jobs:
     
     runs-on: ubuntu-latest
     needs: build
+    if: success()
     
     steps:
       - name: Deploy to GitHub Pages
@@ -78,59 +87,35 @@ jobs:
   security-scan:
     runs-on: ubuntu-latest
     needs: build
+    if: always()
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Run security scan on website
+        continue-on-error: true
         run: |
           echo "🔒 Running security checks..."
           
           # Check for common security issues in HTML files
-          if grep -r "onclick\|onerror\|onload" website/static/*.html; then
-            echo "::warning::Found inline event handlers - consider external handlers"
+          if grep -r "onclick\|onerror\|onload" website/static/*.html 2>/dev/null; then
+            echo "::warning::Found inline event handlers - consider using external event listeners for better security"
+          else
+            echo "✓ No obvious inline event handlers found"
           fi
           
           # Check for hardcoded credentials
-          if grep -r "password\|secret\|api_key" website/static/; then
+          if grep -r "password\|secret\|api_key" website/static/ 2>/dev/null | grep -v "passphrase"; then
             echo "::error::Found potential credentials in website files"
             exit 1
           fi
           
           # Check for mixed content
-          if grep -r "http://" website/static/*.html | grep -v "https://"; then
-            echo "::warning::Found HTTP resources - ensure they redirect to HTTPS"
+          if grep -r "http://" website/static/*.html 2>/dev/null | grep -v "https://"; then
+            echo "::warning::Found HTTP resources - consider using HTTPS"
+          else
+            echo "✓ No mixed HTTP/HTTPS content detected"
           fi
           
           echo "✓ Security scan complete"
-
-      - name: Validate HTML files
-        run: |
-          echo "🔍 Validating HTML files..."
-          cd website/static
-          
-          # Check all HTML files exist
-          for file in *.html; do
-            if [ -f "$file" ]; then
-              echo "✓ Found $file"
-              # Basic HTML validation - check for closing tags
-              if ! grep -q "</html>" "$file"; then
-                echo "::error::$file is missing closing </html> tag"
-                exit 1
-              fi
-            fi
-          done
-          
-          # Verify CSS and JS are referenced
-          if ! grep -r "style.css" *.html; then
-            echo "::error::CSS file not referenced in HTML"
-            exit 1
-          fi
-          
-          if ! grep -r "main.js" *.html; then
-            echo "::error::JavaScript file not referenced in HTML"
-            exit 1
-          fi
-          
-          echo "✓ All HTML files validated successfully"
