@@ -71,6 +71,49 @@ resource "aws_internet_gateway" "main" {
   )
 }
 
+# Route Table for Public Subnets
+resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.main.id
+
+  route {
+    cidr_block      = "0.0.0.0/0"
+    gateway_id      = aws_internet_gateway.main.id
+  }
+
+  tags = merge(
+    var.tags,
+    {
+      Name = "${var.project_name}-public-rt-${var.environment}"
+    }
+  )
+}
+
+# Route Table Associations for Public Subnets
+resource "aws_route_table_association" "public" {
+  count          = length(aws_subnet.public)
+  subnet_id      = aws_subnet.public[count.index].id
+  route_table_id = aws_route_table.public.id
+}
+
+# Route Table for Private Subnets
+resource "aws_route_table" "private" {
+  vpc_id = aws_vpc.main.id
+
+  tags = merge(
+    var.tags,
+    {
+      Name = "${var.project_name}-private-rt-${var.environment}"
+    }
+  )
+}
+
+# Route Table Associations for Private Subnets
+resource "aws_route_table_association" "private" {
+  count          = length(aws_subnet.private)
+  subnet_id      = aws_subnet.private[count.index].id
+  route_table_id = aws_route_table.private.id
+}
+
 # Security Group (placeholder)
 resource "aws_security_group" "alb" {
   name        = "${var.project_name}-alb-sg-${var.environment}"

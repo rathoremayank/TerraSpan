@@ -10,13 +10,12 @@ terraform {
   }
 
   # Uncomment after remote state bucket is created
-  # backend "s3" {
-  #   bucket         = "terraspan-terraform-state"
-  #   key            = "aws/dev/terraform.tfstate"
-  #   region         = "us-east-1"
-  #   encrypt        = true
-  #   dynamodb_table = "terraspan-locks"
-  # }
+  backend "s3" {
+    bucket  = "terraspan-terraform-state-706073863179"
+    key     = "aws/dev/terraform.tfstate"
+    region  = "us-east-1"
+    encrypt = true
+  }
 }
 
 provider "aws" {
@@ -45,7 +44,7 @@ locals {
 
 # Networking module
 module "networking" {
-  source = "../modules/networking"
+  source = "../../modules/networking"
 
   project_name       = var.project_name
   environment        = var.environment
@@ -56,8 +55,23 @@ module "networking" {
   tags = local.common_tags
 }
 
+# Compute module for EC2 instances
+module "compute" {
+  source = "../../modules/compute"
+
+  project_name     = var.project_name
+  environment      = var.environment
+  vpc_id           = module.networking.vpc_id
+  public_subnet_id = module.networking.public_subnet_ids[0]
+  instance_type    = var.instance_type
+  key_name         = var.key_name
+
+  tags = local.common_tags
+
+  depends_on = [module.networking]
+}
+
 # Additional modules can be added here
-# module "compute" { ... }
 # module "storage" { ... }
 # module "iam" { ... }
 # module "monitoring" { ... }

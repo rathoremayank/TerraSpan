@@ -25,6 +25,16 @@ output "internet_gateway_id" {
   value       = aws_internet_gateway.main.id
 }
 
+output "public_route_table_id" {
+  description = "Public Route Table ID"
+  value       = aws_route_table.public.id
+}
+
+output "private_route_table_id" {
+  description = "Private Route Table ID"
+  value       = aws_route_table.private.id
+}
+
 output "alb_security_group_id" {
   description = "ALB Security Group ID"
   value       = aws_security_group.alb.id
