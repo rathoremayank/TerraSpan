@@ -13,7 +13,7 @@ terraform {
   backend "s3" {
     bucket  = "terraspan-terraform-state-706073863179"
     key     = "aws/dev/terraform.tfstate"
-    region  = "us-east-1"
+    region  = "ap-south-1"
     encrypt = true
   }
 }
@@ -37,7 +37,7 @@ locals {
   common_tags = {
     Project     = var.project_name
     Environment = var.environment
-    CreatedAt   = "2026-03-29"
+    CreatedAt   = "2026-04-01"
     ManagedBy   = "Terraform"
   }
 }
@@ -48,27 +48,101 @@ module "networking" {
 
   project_name       = var.project_name
   environment        = var.environment
-  region            = var.region
-  vpc_cidr          = var.vpc_cidr
+  region             = var.region
+  vpc_cidr           = var.vpc_cidr
   availability_zones = var.availability_zones
 
   tags = local.common_tags
 }
 
-# Compute module for EC2 instances
-module "compute" {
-  source = "../../modules/compute"
+# Data source to get the latest Ubuntu 22.04 LTS AMI
+data "aws_ami" "ubuntu" {
+  most_recent = true
+  owners      = ["099720109477"]  # Canonical
 
-  project_name     = var.project_name
-  environment      = var.environment
-  vpc_id           = module.networking.vpc_id
-  public_subnet_id = module.networking.public_subnet_ids[0]
-  instance_type    = var.instance_type
-  key_name         = var.key_name
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"]
+  }
 
-  tags = local.common_tags
+  filter {
+    name   = "state"
+    values = ["available"]
+  }
+}
+
+# Security group for development EC2 instances
+resource "aws_security_group" "dev_instances" {
+  name        = "${var.project_name}-dev-sg-${var.environment}"
+  description = "Security group for development EC2 instances"
+  vpc_id      = module.networking.vpc_id
+
+  # SSH access
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  # Allow all outbound traffic
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "${var.project_name}-dev-sg-${var.environment}"
+    }
+  )
 
   depends_on = [module.networking]
+}
+
+# EC2 Instance 1 (t2.micro)
+resource "aws_instance" "dev_instance_1" {
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = "t2.micro"
+  key_name               = var.key_name
+  subnet_id              = module.networking.public_subnet_ids[0]
+  vpc_security_group_ids = [aws_security_group.dev_instances.id]
+
+  associate_public_ip_address = true
+
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "${var.project_name}-dev-instance-1-${var.environment}"
+      Type = "Development"
+    }
+  )
+
+  depends_on = [aws_security_group.dev_instances]
+}
+
+# EC2 Instance 2 (t2.micro)
+resource "aws_instance" "dev_instance_2" {
+  ami                    = data.aws_ami.ubuntu.id
+  instance_type          = "t2.micro"
+  key_name               = var.key_name
+  subnet_id              = module.networking.public_subnet_ids[0]
+  vpc_security_group_ids = [aws_security_group.dev_instances.id]
+
+  associate_public_ip_address = true
+
+  tags = merge(
+    local.common_tags,
+    {
+      Name = "${var.project_name}-dev-instance-2-${var.environment}"
+      Type = "Development"
+    }
+  )
+
+  depends_on = [aws_security_group.dev_instances]
 }
 
 # Additional modules can be added here

@@ -25,18 +25,64 @@ output "private_route_table_id" {
   value       = module.networking.private_route_table_id
 }
 
-# Jenkins Server Outputs
-output "jenkins_instance_id" {
-  description = "Jenkins EC2 instance ID"
-  value       = module.compute.jenkins_instance_id
+################################################################################
+# Development EC2 Instances
+################################################################################
+
+# Instance 1 Outputs
+output "dev_instance_1_id" {
+  description = "Development EC2 instance 1 ID"
+  value       = aws_instance.dev_instance_1.id
 }
 
-output "jenkins_public_ip" {
-  description = "Jenkins server public IP - Access at http://<IP>:8080"
-  value       = module.compute.jenkins_public_ip
+output "dev_instance_1_private_ip" {
+  description = "Development EC2 instance 1 private IP"
+  value       = aws_instance.dev_instance_1.private_ip
 }
 
-output "jenkins_security_group_id" {
-  description = "Jenkins security group ID"
-  value       = module.compute.jenkins_security_group_id
+output "dev_instance_1_public_ip" {
+  description = "Development EC2 instance 1 public IP"
+  value       = aws_instance.dev_instance_1.public_ip
 }
+
+output "dev_instance_1_dns" {
+  description = "Development EC2 instance 1 public DNS name"
+  value       = aws_instance.dev_instance_1.public_dns
+}
+
+# Instance 2 Outputs
+output "dev_instance_2_id" {
+  description = "Development EC2 instance 2 ID"
+  value       = aws_instance.dev_instance_2.id
+}
+
+output "dev_instance_2_private_ip" {
+  description = "Development EC2 instance 2 private IP"
+  value       = aws_instance.dev_instance_2.private_ip
+}
+
+output "dev_instance_2_public_ip" {
+  description = "Development EC2 instance 2 public IP"
+  value       = aws_instance.dev_instance_2.public_ip
+}
+
+output "dev_instance_2_dns" {
+  description = "Development EC2 instance 2 public DNS name"
+  value       = aws_instance.dev_instance_2.public_dns
+}
+
+# Security Group Output
+output "dev_security_group_id" {
+  description = "Security group ID for development EC2 instances"
+  value       = aws_security_group.dev_instances.id
+}
+
+# Connection Info
+output "connection_info" {
+  description = "SSH connection information for development instances"
+  value = {
+    instance_1_ssh = "ssh -i /path/to/kubernetes-key-test.pem ubuntu@${aws_instance.dev_instance_1.public_ip}"
+    instance_2_ssh = "ssh -i /path/to/kubernetes-key-test.pem ubuntu@${aws_instance.dev_instance_2.public_ip}"
+  }
+}
+
